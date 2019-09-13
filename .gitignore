@@ -94,6 +94,9 @@ typings/
 ._*
 .temp/
 
+# development directory
+/dev
+
 # release directories
 .build
 .deploy
