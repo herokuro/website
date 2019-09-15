@@ -11,6 +11,7 @@ const SVG = require('svg-sprite-loader/plugin')
 const ASSETS = 'assets'
 const ROOT = path.join(__dirname, '../../')
 // const CSS_COMMON = path.join(ROOT, '/src/styles/common/index.sass')
+const development = !process.argv.includes('-p')
 
 module.exports = {
   entry: './src/app.js',
@@ -21,7 +22,11 @@ module.exports = {
     publicPath: '/'
   },
 
-  devtool: 'inline-source-map',
+  devtool: development ? 'inline-source-map' : false,
+
+  performance: {
+    hints: development ? 'warning' : 'error'
+  },
 
   resolve: {
     alias: {

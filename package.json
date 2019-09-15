@@ -28,10 +28,14 @@
     "node": ">=10.16.13"
   },
   "standard": {
-    "globals": [ "$", "XMLHttpRequest" ]
+    "globals": [
+      "$",
+      "XMLHttpRequest"
+    ]
   },
   "scripts": {
     "dev": "rm -rf dev && webpack-dev-server --config script/webpack/config.js",
+    "build": "webpack -p --config script/webpack/config.js",
     "test": "",
     "check:build": "webpack -p --config script/webpack/config.js",
     "check:style": "standard --verbose | snazzy"
@@ -45,6 +49,7 @@
     "copy-webpack-plugin": "^5.0.4",
     "core-js": "^3.2.1",
     "css-loader": "^3.2.0",
+    "fibers": "^4.0.1",
     "file-loader": "^4.2.0",
     "get-value": "^3.0.1",
     "handlebars": "^4.2.0",
@@ -56,6 +61,7 @@
     "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
+    "sass": "^1.22.12",
     "sass-loader": "^8.0.0",
     "snazzy": "^8.0.0",
     "standard": "^14.2.0",

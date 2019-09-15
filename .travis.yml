@@ -24,6 +24,7 @@ jobs:
   include:
     - stage: test
       script:
+        # check webpack build
         - npm run check:build
 
     - stage: style
