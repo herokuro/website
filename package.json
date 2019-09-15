@@ -1,7 +1,7 @@
 {
   "name": "@herokuro/website",
   "version": "0.0.0",
-  "description": "",
+  "description": "A set of Node.js tools and utilities to help kickstart and manage your Heroku projects.",
   "private": true,
   "scripts": {
     "dev": "rm -rf dev && webpack-dev-server --config script/webpack/config.js",

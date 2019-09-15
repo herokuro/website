@@ -1,8 +1,27 @@
 'use strict'
 
+const pkg = require('../../package.json')
+
+const title = '@herokuro Website'
+const url = 'https://herokuro.github.io'
+
 module.exports = {
-  title: 'SITE TITLE',
-  description: 'A site description',
+  title: title,
+  description: pkg.description,
+  meta: {
+    general: [
+      { property: 'title', content: title },
+      { property: 'description', content: pkg.description },
+      { property: 'image', content: 'image link' },
+      { property: 'url', content: url },
+      { property: 'site_name', content: title }
+    ],
+    twitter: [
+      { name: 'card', content: 'card content' },
+      { name: 'image:alt', content: 'image alt content' },
+      { name: 'site', content: 'site content' }
+    ]
+  },
   lead: [
     { name: 'item-1' },
     { name: 'item-2' },

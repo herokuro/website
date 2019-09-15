@@ -7,6 +7,14 @@
     <meta name="description" content="{{get 'description'}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {{#foreach (get 'meta.general')}}
+      <meta property="og:{{ property }}" content="{{ content }}">
+    {{/foreach}}
+
+    {{#foreach (get 'meta.twitter')}}
+      <meta property="twitter:{{ name }}" content="{{ content }}">
+    {{/foreach}}
+
     {{!-- <link rel="manifest" href="site.webmanifest"> --}}
     {{!-- <link rel="apple-touch-icon" href="icon.png"> --}}
     <!-- Place favicon.ico in the root directory -->
