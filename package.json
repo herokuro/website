@@ -3,21 +3,38 @@
   "version": "0.0.0",
   "description": "A set of Node.js tools and utilities to help kickstart and manage your Heroku projects.",
   "private": true,
-  "scripts": {
-    "dev": "rm -rf dev && webpack-dev-server --config script/webpack/config.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "author": "Richard King <richrdkng@gmail.com> (www.richrdkng.com)",
+  "license": "ISC",
+  "homepage": "https://github.com/herokuro/website#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/herokuro/website.git"
   },
-  "keywords": [],
-  "author": "Richard King <richrdkng@gmail.com> (www.richrdkng.com)",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/herokuro/website/issues"
   },
-  "homepage": "https://github.com/herokuro/website#readme",
+  "keywords": [
+    "herokuro",
+    "@herokuro",
+    "heroku",
+    "website",
+    "tool",
+    "tools",
+    "util",
+    "utility",
+    "utilities"
+  ],
+  "engines": {
+    "node": ">=10.16.13"
+  },
+  "standard": {
+    "globals": [ "$", "XMLHttpRequest" ]
+  },
+  "scripts": {
+    "dev": "rm -rf dev && webpack-dev-server --config script/webpack/config.js",
+    "check:style": "standard --verbose | snazzy",
+    "test": "webpack -p --config script/webpack/config.js"
+  },
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/plugin-transform-runtime": "^7.6.0",

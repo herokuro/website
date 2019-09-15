@@ -1,0 +1,35 @@
+language: node_js
+
+os:
+  - linux
+
+sudo: false
+
+notifications:
+  email: false
+
+node_js:
+  - lts/*
+
+cache:
+  npm
+
+stages:
+  - test
+  - style
+  - name: deploy
+    if: branch = master
+
+jobs:
+  include:
+    - stage: style
+      script:
+        # check code style according to StandardJS
+        - npm run check:style
+
+    - stage: deploy
+      deploy:
+        skip_cleanup: true
+        provider: script
+        script:
+          - npx semantic-release

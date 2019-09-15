@@ -2,7 +2,7 @@
 
 const path = require('path')
 
-const webpack = require('webpack')
+// const webpack = require('webpack')
 const Copy = require('copy-webpack-plugin')
 const HTML = require('html-webpack-plugin')
 const Extract = require('mini-css-extract-plugin')
@@ -10,7 +10,7 @@ const SVG = require('svg-sprite-loader/plugin')
 
 const ASSETS = 'assets'
 const ROOT = path.join(__dirname, '../../')
-const CSS_COMMON = path.join(ROOT, '/src/styles/common/index.sass')
+// const CSS_COMMON = path.join(ROOT, '/src/styles/common/index.sass')
 
 module.exports = {
   entry: './src/app.js',
@@ -22,7 +22,6 @@ module.exports = {
   },
 
   devtool: 'inline-source-map',
-  watch: true,
 
   resolve: {
     alias: {
@@ -33,17 +32,20 @@ module.exports = {
   module: {
     rules: [
       // Markup processing
-      { test: /\.hbs$/,
+      {
+        test: /\.hbs$/,
         loader: 'handlebars-loader',
         query: {
-          helperDirs: [ path.join(ROOT, '/src/markup/helpers') ],
-          partialDirs: [ path.join(ROOT, '/src/markup/partials') ]
+          helperDirs: [path.join(ROOT, '/src/markup/helpers')],
+          partialDirs: [path.join(ROOT, '/src/markup/partials')]
         }
       },
       // SVG sprites processing
-      { test: /icons\/.*\.svg$/,
+      {
+        test: /icons\/.*\.svg$/,
         use: [
-          { loader: 'svg-sprite-loader',
+          {
+            loader: 'svg-sprite-loader',
             options: {
               extract: true,
               spriteFilename: `${ASSETS}/icons.svg`,
@@ -53,7 +55,8 @@ module.exports = {
         ]
       },
       // Font processing
-      { test: /\.woff$/,
+      {
+        test: /\.woff$/,
         use: [
           {
             loader: 'file-loader',
@@ -65,26 +68,31 @@ module.exports = {
         ]
       },
       // Style processing
-      { test: /\.sass$/,
+      {
+        test: /\.sass$/,
         use: [
-          { loader: Extract.loader
+          {
+            loader: Extract.loader
           },
-          { loader: 'css-loader',
+          {
+            loader: 'css-loader',
             options: {
               url: false,
               sourceMap: true
             }
           },
-          { loader: 'postcss-loader',
+          {
+            loader: 'postcss-loader',
             options: {
               sourceMap: true,
               ident: 'postcss',
-              plugins: [ require('autoprefixer') ]
+              plugins: [require('autoprefixer')]
             }
           },
-          { loader: 'sass-loader',
+          {
+            loader: 'sass-loader',
             options: {
-              sourceMap: true,
+              sourceMap: true
               /*
               sassOptions: {
                 importer: (url, prev, done) => {
@@ -97,7 +105,8 @@ module.exports = {
         ]
       },
       // JavaScript processing
-      { test: /\.js$/,
+      {
+        test: /\.js$/,
         exclude: /node_modules/,
         use: 'babel-loader'
       }
@@ -107,8 +116,10 @@ module.exports = {
   plugins: [
     new Copy([
       // copy jquery
-      { from: path.join(ROOT, '/node_modules/jquery/dist/jquery.min.js'),
-        to: path.join(ROOT, '/dev/vendors') }
+      {
+        from: path.join(ROOT, '/node_modules/jquery/dist/jquery.min.js'),
+        to: path.join(ROOT, '/dev/vendors')
+      }
     ]),
     new HTML({
       filename: 'index.html',
