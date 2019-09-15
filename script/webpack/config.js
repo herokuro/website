@@ -6,6 +6,7 @@ const webpack = require('webpack')
 const Copy = require('copy-webpack-plugin')
 const HTML = require('html-webpack-plugin')
 const Extract = require('mini-css-extract-plugin')
+const SVG = require('svg-sprite-loader/plugin')
 
 const ROOT = path.join(__dirname, '../../')
 const CSS_COMMON = path.join(ROOT, '/src/styles/common/index.sass')
@@ -37,6 +38,18 @@ module.exports = {
           helperDirs: [ path.join(ROOT, '/src/markup/helpers') ],
           partialDirs: [ path.join(ROOT, '/src/markup/partials') ]
         }
+      },
+      // SVG sprites processing
+      { test: /icons\/.*\.svg$/,
+        use: [
+          { loader: 'svg-sprite-loader',
+            options: {
+              extract: true,
+              spriteFilename: 'icons.svg',
+              runtimeCompat: true
+            }
+          }
+        ]
       },
       // Style processing
       { test: /\.sass$/,
@@ -89,6 +102,9 @@ module.exports = {
     }),
     new Extract({
       filename: 'bundle.css'
+    }),
+    new SVG({
+      plainSprite: true
     })
   ],
 
