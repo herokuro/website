@@ -6,3 +6,6 @@ import './scripts/index.js'
 
 // import icons
 require.context('./icons/', true, /\.svg$/)
+
+// import fonts
+require.context('./fonts/', true, /\.woff$/)

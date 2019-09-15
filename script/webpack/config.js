@@ -8,6 +8,7 @@ const HTML = require('html-webpack-plugin')
 const Extract = require('mini-css-extract-plugin')
 const SVG = require('svg-sprite-loader/plugin')
 
+const ASSETS = 'assets'
 const ROOT = path.join(__dirname, '../../')
 const CSS_COMMON = path.join(ROOT, '/src/styles/common/index.sass')
 
@@ -15,7 +16,7 @@ module.exports = {
   entry: './src/app.js',
 
   output: {
-    filename: 'bundle.js',
+    filename: `${ASSETS}/scripts.js`,
     path: path.join(ROOT, '/dev'),
     publicPath: '/'
   },
@@ -45,8 +46,20 @@ module.exports = {
           { loader: 'svg-sprite-loader',
             options: {
               extract: true,
-              spriteFilename: 'icons.svg',
+              spriteFilename: `${ASSETS}/icons.svg`,
               runtimeCompat: true
+            }
+          }
+        ]
+      },
+      // Font processing
+      { test: /\.woff$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: `${ASSETS}/fonts`
             }
           }
         ]
@@ -95,13 +108,14 @@ module.exports = {
     new Copy([
       // copy jquery
       { from: path.join(ROOT, '/node_modules/jquery/dist/jquery.min.js'),
-        to: path.join(ROOT, '/dev/vendor') }
+        to: path.join(ROOT, '/dev/vendors') }
     ]),
     new HTML({
+      filename: 'index.html',
       template: path.join(ROOT, '/src/markup/index.hbs')
     }),
     new Extract({
-      filename: 'bundle.css'
+      filename: `${ASSETS}/styles.css`
     }),
     new SVG({
       plainSprite: true
