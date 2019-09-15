@@ -8,6 +8,7 @@ const HTML = require('html-webpack-plugin')
 const Extract = require('mini-css-extract-plugin')
 
 const ROOT = path.join(__dirname, '../../')
+const CSS_COMMON = path.join(ROOT, '/src/styles/common/index.sass')
 
 module.exports = {
   entry: './src/app.js',
@@ -19,6 +20,13 @@ module.exports = {
   },
 
   devtool: 'inline-source-map',
+  watch: true,
+
+  resolve: {
+    alias: {
+      // common: path.join(ROOT, './src/styles/common/index.sass')
+    }
+  },
 
   module: {
     rules: [
@@ -31,7 +39,7 @@ module.exports = {
         }
       },
       // Style processing
-      { test: /\.(sass|scss|css)$/,
+      { test: /\.sass$/,
         use: [
           { loader: Extract.loader
           },
@@ -50,7 +58,14 @@ module.exports = {
           },
           { loader: 'sass-loader',
             options: {
-              sourceMap: true
+              sourceMap: true,
+              /*
+              sassOptions: {
+                importer: (url, prev, done) => {
+                  done(url === 'common' ? { file: CSS_COMMON } : {})
+                }
+              }
+              */
             }
           }
         ]
@@ -79,6 +94,7 @@ module.exports = {
 
   devServer: {
     contentBase: path.join(ROOT, '/dev'),
+    watchContentBase: true,
     writeToDisk: true,
     compress: true
   }

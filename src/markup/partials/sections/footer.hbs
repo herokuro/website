@@ -1,1 +1,22 @@
-<footer></footer>
+<footer class="footer">
+  <div class="main">
+    {{#foreach (get 'footer.main')}}
+      <ul class="list">
+        <li class="title">{{ title }}</li>
+
+        {{#foreach list}}
+          <li class="item">
+            <span class="icon">x</span>
+            <span class="name">{{ name }}</span>
+            <a href="#">x</a>
+          </li>
+        {{/foreach}}
+      </ul>
+    {{/foreach}}
+  </div>
+
+  <div class="bottom">
+    <div>icon</div>
+    <div>@ 2019 @herokuro https://herokuro.github.io/</div>
+  </div>
+</footer>
