@@ -32,8 +32,9 @@
   },
   "scripts": {
     "dev": "rm -rf dev && webpack-dev-server --config script/webpack/config.js",
-    "check:style": "standard --verbose | snazzy",
-    "test": "webpack -p --config script/webpack/config.js"
+    "test": "",
+    "check:build": "webpack -p --config script/webpack/config.js",
+    "check:style": "standard --verbose | snazzy"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
