@@ -1,6 +1,6 @@
 {
   "name": "@herokuro/website",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "description": "A set of Node.js tools and utilities to help kickstart and manage your Heroku projects.",
   "private": true,
   "author": "Richard King <richrdkng@gmail.com> (www.richrdkng.com)",
@@ -73,6 +73,7 @@
     "postcss-preset-env": "^6.7.0",
     "sass": "^1.22.12",
     "sass-loader": "^8.0.0",
+    "semantic-release": "^15.13.24",
     "semver": "^6.3.0",
     "snazzy": "^8.0.0",
     "standard": "^14.2.0",

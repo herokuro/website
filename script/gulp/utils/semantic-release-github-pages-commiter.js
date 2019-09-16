@@ -44,10 +44,13 @@ module.exports = {
     // clear deploy repository (delete all files)
     console.log('Clear repository.')
     try {
-      await execa('git', ['rm', '-r', '*'], { repo })
+      await execa('git', ['rm', '-r', '*'], { cwd: repo })
     } catch (e) {
       // noop
     }
+
+    // wait for a while for the previous process to be completed
+    await awhile('2.5s')
 
     // copy build files to deploy repository
     console.log(`Copy build files from "${buildDirectory}" into "${repositoryDirectory}".`)
@@ -64,17 +67,10 @@ module.exports = {
     // commit files with next version
     console.log(`Commit content with version "${version}".`)
     await execa('git', ['add', '.'], { cwd: repo })
-    await execa('git', ['commit', '-m', `chore(release): ${version} [skip ci]`], { cwd: repo })
+    await execa('git', ['commit', '--allow-empty', '-m', `chore(release): ${version} [skip ci]`], { cwd: repo })
 
     // push content to remote repository
     console.log(`Push content to remote "${repositoryUrl}".`)
     await execa('git', ['push', '-u', 'origin', 'master'], { cwd: repo })
-
-    // clean up repository diectory
-    console.log(`Clean up and delete repository directory "${repositoryDirectory}".`)
-    await execa('rm', ['-rf', repo])
-
-    // wait for a while for the previous process to be completed
-    await awhile('2.5s')
   }
 }
