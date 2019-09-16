@@ -97,6 +97,8 @@ typings/
 # development directory
 /dev
 
-# release directories
-.build
-.deploy
+# release and deploy directories
+/build
+/deploy
+/.build
+/.deploy

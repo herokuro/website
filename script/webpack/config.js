@@ -18,7 +18,7 @@ module.exports = {
 
   output: {
     filename: `${ASSETS}/scripts.js`,
-    path: path.join(ROOT, '/dev'),
+    path: path.join(ROOT, development ? '/dev' : '/build'),
     publicPath: '/'
   },
 
