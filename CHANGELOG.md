@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/herokuro/website/compare/v1.0.1...v1.0.2) (2019-09-17)
+
+
+### Bug Fixes
+
+* **gulp:** fix docs build script and remove gulp-debug ([6340468](https://github.com/herokuro/website/commit/6340468))
+
 ## [1.0.1](https://github.com/herokuro/website/compare/v1.0.0...v1.0.1) (2019-09-16)
 
 
