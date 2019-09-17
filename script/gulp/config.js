@@ -2,7 +2,7 @@
 
 const path = require('path')
 const gulp = require('gulp')
-const debug = require('gulp-debug')
+// const debug = require('gulp-debug')
 const replace = require('./utils/gulp-replace-with')
 const detemplate = require('./utils/gulp-detemplate')
 const year = require('./utils/license-year-range')
@@ -25,7 +25,6 @@ gulp.task('build:docs:repo', async () => {
       `${src}/doc/LICENSE.md.tpl`,
       `${src}/doc/repo/README.md.tpl`
     ])
-    .pipe(debug())
     .pipe(replace(docData))
     .pipe(detemplate())
     .pipe(gulp.dest(root))
@@ -37,7 +36,6 @@ gulp.task('build:docs:deploy', async () => {
       `${src}/doc/LICENSE.md.tpl`,
       `${src}/doc/deploy/README.md.tpl`
     ])
-    .pipe(debug())
     .pipe(replace(docData))
     .pipe(detemplate())
     .pipe(gulp.dest(build))
