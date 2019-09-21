@@ -1,5 +1,7 @@
 'use strict'
 
+/* eslint-disable object-curly-newline */
+
 const path = require('path')
 
 // const webpack = require('webpack')
@@ -43,8 +45,7 @@ module.exports = {
   module: {
     rules: [
       // Markup processing
-      {
-        test: /\.hbs$/,
+      { test: /\.hbs$/,
         loader: 'handlebars-loader',
         query: {
           helperDirs: [path.join(ROOT, '/src/markup/helpers')],
@@ -52,11 +53,9 @@ module.exports = {
         }
       },
       // SVG sprites processing
-      {
-        test: /icons\/.*\.svg$/,
+      { test: /icons\/.*\.svg$/,
         use: [
-          {
-            loader: 'svg-sprite-loader',
+          { loader: 'svg-sprite-loader',
             options: {
               extract: true,
               spriteFilename: `${ASSETS}/icons.svg`,
@@ -66,11 +65,9 @@ module.exports = {
         ]
       },
       // Font processing
-      {
-        test: /\.woff$/,
+      { test: /\.woff$/,
         use: [
-          {
-            loader: 'file-loader',
+          { loader: 'file-loader',
             options: {
               name: '[name].[ext]',
               outputPath: `${ASSETS}/fonts`
@@ -79,29 +76,23 @@ module.exports = {
         ]
       },
       // Style processing
-      {
-        test: /\.sass$/,
+      { test: /\.sass$/,
         use: [
-          {
-            loader: Extract.loader
-          },
-          {
-            loader: 'css-loader',
+          { loader: Extract.loader },
+          { loader: 'css-loader',
             options: {
               url: false,
               sourceMap: true
             }
           },
-          {
-            loader: 'postcss-loader',
+          { loader: 'postcss-loader',
             options: {
               sourceMap: true,
               ident: 'postcss',
               plugins: [require('autoprefixer')]
             }
           },
-          {
-            loader: 'sass-loader',
+          { loader: 'sass-loader',
             options: {
               sourceMap: true
               /*
@@ -116,8 +107,7 @@ module.exports = {
         ]
       },
       // JavaScript processing
-      {
-        test: /\.js$/,
+      { test: /\.js$/,
         exclude: /node_modules/,
         use: 'babel-loader'
       }
@@ -127,10 +117,8 @@ module.exports = {
   plugins: [
     new Copy([
       // copy jquery
-      {
-        from: path.join(ROOT, '/node_modules/jquery/dist/jquery.min.js'),
-        to: path.join(ROOT, '/dev/vendors')
-      }
+      { from: path.join(ROOT, '/node_modules/jquery/dist/jquery.min.js'),
+        to: path.join(ROOT, '/dev/vendors') }
     ]),
     new HTML({
       filename: 'index.html',

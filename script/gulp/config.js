@@ -1,7 +1,6 @@
 'use strict'
 
 const gulp = require('gulp')
-const debug = require('gulp-debug')
 const commiter = require('./utils/semantic-release-github-pages-commiter')
 const p = require('./utils/paths')
 
