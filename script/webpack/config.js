@@ -116,7 +116,7 @@ module.exports = {
   plugins: [
     new Copy([
       // copy jquery
-      { from: path.join(ROOT, '/node_modules/jquery/dist/jquery.min.js'),
+      { from: path.join(ROOT, '/node_modules/jquery/dist/jquery.slim.js'),
         to: path.join(ROOT, '/dev/vendors') }
     ]),
     new HTML({
