@@ -15,10 +15,26 @@ ul
   padding-inline-start: 0
 
 h1, h2, h3
+  margin: 0
   text-align: center
 
+a
+  display: inline-block
+
+body > section
+  display: flex
+
+  flex-direction: column
+  align-items: center
+  // justify-content: center
+
+  min-height: 100vh
+
+  & .wrapper
+    max-width: 980px
+
 // SVG sprite icons
-.icon
+.svg-icon
   // Place the icon on the text baseline.
   position: relative
   top: .125em
@@ -35,4 +51,4 @@ h1, h2, h3
 
   // If the icon is used on a link, which has a color transition,
   // we can also use a transition on the fill value.
-  transition: fill .3s
+  // transition: fill .3s

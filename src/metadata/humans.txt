@@ -1,0 +1,20 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Developer & Designer: Richard King
+    Contact: richrdkng@gmail.com
+    Twitter: @richrdkng
+    From: Hungary
+
+# THANKS
+
+    Open Source Communities
+
+# TECHNOLOGY COLOPHON
+
+    Github, NPM, Travis CI
+    Webpack, Gulp
+    CSS3, HTML5
+    jQuery, Normalize.css

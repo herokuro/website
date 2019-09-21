@@ -2,5 +2,7 @@
 
 module.exports = {
   default: { id: '#default' },
-  home: { id: '#home' }
+  github: { id: '#github' },
+  twitter: { id: '#twitter' },
+  email: { id: '#email' }
 }

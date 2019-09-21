@@ -22,13 +22,21 @@ module.exports = {
       { name: 'site', content: 'site content' }
     ]
   },
-  lead: [
-    { name: 'item-1' },
-    { name: 'item-2' },
-    { name: 'item-3' },
-    { name: 'item-4' },
-    { name: 'item-5' }
-  ],
+  lead: {
+    links: [
+      { href: '#', icon: 'github', name: 'GitHub' },
+      { href: '#', icon: 'twitter', name: 'Twitter' }
+    ],
+    icons: [
+      { name: 'item-1' },
+      { name: 'item-2' },
+      { name: 'item-3' },
+      { name: 'item-4' },
+      { name: 'item-5' },
+      { name: 'item-6' },
+      { name: 'item-7' }
+    ]
+  },
   footer: {
     main: [
       {
