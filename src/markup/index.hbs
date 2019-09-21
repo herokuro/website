@@ -6,7 +6,7 @@
     <meta name="description" content="{{get 'description'}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {{#foreach (get 'meta.general')}}
+    {{#foreach (get 'meta.og')}}
       <meta property="og:{{ property }}" content="{{ content }}">
     {{/foreach}}
 

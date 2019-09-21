@@ -9,7 +9,7 @@ module.exports = {
   title: title,
   description: pkg.description,
   meta: {
-    general: [
+    og: [
       { property: 'title', content: title },
       { property: 'description', content: pkg.description },
       { property: 'image', content: `${url}/thumbnail-facebook.jpg` },
