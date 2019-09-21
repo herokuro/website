@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/herokuro/website/compare/v1.2.1...v1.3.0) (2019-09-21)
+
+
+### Bug Fixes
+
+* **jquery:** use jquery.slim instead of the regular version ([68e4fa9](https://github.com/herokuro/website/commit/68e4fa9))
+
+
+### Features
+
+* **metadata:** add og and twitter metadata with thumbnail images ([2d5fa9e](https://github.com/herokuro/website/commit/2d5fa9e))
+
 ## [1.2.1](https://github.com/herokuro/website/compare/v1.2.0...v1.2.1) (2019-09-21)
 
 
