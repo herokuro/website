@@ -2,7 +2,7 @@
 
 const pkg = require('../../package.json')
 
-const title = '@herokuro Homepage'
+const title = '@herokuro - Node.js tools to manage your Heroku projects.'
 const url = 'https://herokuro.github.io'
 
 module.exports = {

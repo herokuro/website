@@ -11,7 +11,6 @@ const Extract = require('mini-css-extract-plugin')
 const SVG = require('svg-sprite-loader/plugin')
 const Favicon = require('favicons-webpack-plugin')
 
-const data = require('../../src/data')
 const pkg = require('../gulp/utils/packager')
 const getVersion = require('../gulp/utils/get-version-from-env')
 
@@ -122,13 +121,17 @@ module.exports = {
     ]),
     new HTML({
       filename: 'index.html',
-      template: path.join(ROOT, '/src/markup/index.hbs')
+      template: path.join(ROOT, '/src/markup/index.hbs'),
+      templateParameters: {
+        development,
+        production: !development
+      }
     }),
     new Favicon({
       logo: path.join(ROOT, '/src/metadata/imported/favicon.png'),
       prefix: development ? 'assets/' : '',
       favicons: {
-        appName: data.title,
+        appName: '@herokuro Website',
         appShortName: pkg.name.scope,
         appDescription: pkg.description,
         developerName: pkg.author.name,

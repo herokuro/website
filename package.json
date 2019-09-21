@@ -1,7 +1,7 @@
 {
   "name": "@herokuro/website",
   "version": "0.0.0-development",
-  "description": "The official homepage of @herokuro, a set of Node.js tools to help kickstart and manage your Heroku projects.",
+  "description": "A set of Node.js tools to help kickstart and manage your Heroku projects.",
   "private": true,
   "author": "Richard King <richrdkng@gmail.com> (www.richrdkng.com)",
   "license": "ISC",

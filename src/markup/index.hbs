@@ -1,6 +1,5 @@
 <!doctype html>
 <html class="no-js" lang="en">
-
   <head>
     <meta charset="utf-8">
     <title>{{get 'title'}}</title>
@@ -14,12 +13,6 @@
     {{#foreach (get 'meta.twitter')}}
       <meta property="twitter:{{ name }}" content="{{ content }}">
     {{/foreach}}
-
-    {{!-- <link rel="manifest" href="site.webmanifest"> --}}
-    {{!-- <link rel="apple-touch-icon" href="icon.png"> --}}
-    <!-- Place favicon.ico in the root directory -->
-
-    <meta name="theme-color" content="#fafafa">
   </head>
 
   <body>
@@ -35,7 +28,14 @@
     {{> sections/connect }}
     {{> sections/footer }}
 
-    <script src="vendors/jquery.min.js"></script>
+    {{#if development}}
+      <script src="vendors/jquery.min.js"></script>
+    {{else}}
+      <script
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+        crossorigin="anonymous">
+      </script>
+    {{/if}}
   </body>
-
 </html>
