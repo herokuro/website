@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/herokuro/website/compare/v1.3.0...v1.3.1) (2019-09-21)
+
+
+### Bug Fixes
+
+* **webpack:** fix warning and error hints and large asset sizes ([c0c11e1](https://github.com/herokuro/website/commit/c0c11e1))
+
 # [1.3.0](https://github.com/herokuro/website/compare/v1.2.1...v1.3.0) (2019-09-21)
 
 
