@@ -15,22 +15,22 @@ cache:
   npm
 
 stages:
-  - test
   - style
+  - test
   - name: deploy
     if: branch = master
 
 jobs:
   include:
-    - stage: test
-      script:
-        # check webpack build
-        - npm run check:build
-
     - stage: style
       script:
         # check code style according to StandardJS
         - npm run check:style
+
+    - stage: test
+      script:
+        # check webpack build
+        - npm run check:build
 
     - stage: deploy
       deploy:
