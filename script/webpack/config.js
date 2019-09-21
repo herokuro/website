@@ -17,7 +17,9 @@ const getVersion = require('../gulp/utils/get-version-from-env')
 const ASSETS = 'assets'
 const ROOT = path.join(__dirname, '../../')
 // const CSS_COMMON = path.join(ROOT, '/src/styles/common/index.sass')
-const development = !process.argv.includes('-p')
+const { development } = require('./utils/mode')
+const { whenDevelopment } = require('./utils/mode')
+
 const version = development ? pkg.version : getVersion()
 
 module.exports = {
@@ -115,9 +117,21 @@ module.exports = {
 
   plugins: [
     new Copy([
-      // copy jquery
-      { from: path.join(ROOT, '/node_modules/jquery/dist/jquery.slim.js'),
-        to: path.join(ROOT, '/dev/vendors') }
+      ...whenDevelopment(
+        // copy jquery
+        { from: path.join(ROOT, '/node_modules/jquery/dist/jquery.slim.js'),
+          to: path.join(ROOT, '/dev/vendors') }
+      ),
+      // copy thumbnail images
+      { from: path.join(ROOT, '/src/metadata/imported/thumbnail-*.jpg'),
+        to: path.join(ROOT, development ? '/dev' : '/build'),
+        flatten: true
+      },
+      // copy .txt files (humans.txt and robots.txt)
+      { from: path.join(ROOT, '/src/metadata/*.txt'),
+        to: path.join(ROOT, development ? '/dev' : '/build'),
+        flatten: true
+      }
     ]),
     new HTML({
       filename: 'index.html',

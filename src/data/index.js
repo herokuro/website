@@ -12,14 +12,15 @@ module.exports = {
     general: [
       { property: 'title', content: title },
       { property: 'description', content: pkg.description },
-      { property: 'image', content: 'image link' },
-      { property: 'url', content: url },
-      { property: 'site_name', content: title }
+      { property: 'image', content: `${url}/thumbnail-facebook.jpg` },
+      { property: 'url', content: url }
     ],
     twitter: [
-      { name: 'card', content: 'card content' },
-      { name: 'image:alt', content: 'image alt content' },
-      { name: 'site', content: 'site content' }
+      { name: 'title', content: title },
+      { name: 'description', content: pkg.description },
+      { name: 'image', content: `${url}/thumbnail-twitter.jpg` },
+      { name: 'card', content: 'summary_large_image' },
+      { name: 'url', content: url }
     ]
   },
   lead: {

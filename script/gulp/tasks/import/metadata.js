@@ -8,13 +8,7 @@ gulp.task('import:metadata', async () => {
   const dir = path.dirname(require.resolve('@herokuro/brand/package.json'))
   const cwd = `${dir}/dist/social`
 
-  const media = [
-    'favicon.png',
-    'og-facebook.jpg',
-    'og-twitter.jpg'
-  ]
-
   gulp
-    .src(media, { cwd })
+    .src(['favicon.png', 'thumbnail-*.jpg'], { cwd })
     .pipe(gulp.dest(`${p.src}/metadata/imported`))
 })
