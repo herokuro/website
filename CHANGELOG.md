@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/herokuro/website/compare/v1.2.0...v1.2.1) (2019-09-21)
+
+
+### Bug Fixes
+
+* **metadata:** fix website title and description metadata ([f4654dd](https://github.com/herokuro/website/commit/f4654dd))
+
 # [1.2.0](https://github.com/herokuro/website/compare/v1.1.0...v1.2.0) (2019-09-21)
 
 
