@@ -19,8 +19,8 @@ module.exports = {
       { name: 'title', content: title },
       { name: 'description', content: pkg.description },
       { name: 'image', content: `${url}/thumbnail-twitter.jpg` },
-      { name: 'card', content: 'summary_large_image' },
-      { name: 'url', content: url }
+      { name: 'url', content: url },
+      { name: 'card', content: 'summary_large_image' }
     ]
   },
   lead: {
