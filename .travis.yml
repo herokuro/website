@@ -33,10 +33,6 @@ jobs:
         - npm run check:style
 
     - stage: deploy
-      script:
-        # build before deployment
-        - npm run build
-
       deploy:
         skip_cleanup: true
         provider: script

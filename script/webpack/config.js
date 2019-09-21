@@ -7,11 +7,17 @@ const Copy = require('copy-webpack-plugin')
 const HTML = require('html-webpack-plugin')
 const Extract = require('mini-css-extract-plugin')
 const SVG = require('svg-sprite-loader/plugin')
+const Favicon = require('favicons-webpack-plugin')
+
+const data = require('../../src/data')
+const pkg = require('../gulp/utils/packager')
+const getVersion = require('../gulp/utils/get-version-from-env')
 
 const ASSETS = 'assets'
 const ROOT = path.join(__dirname, '../../')
 // const CSS_COMMON = path.join(ROOT, '/src/styles/common/index.sass')
 const development = !process.argv.includes('-p')
+const version = development ? pkg.version : getVersion()
 
 module.exports = {
   entry: './src/app.js',
@@ -129,6 +135,31 @@ module.exports = {
     new HTML({
       filename: 'index.html',
       template: path.join(ROOT, '/src/markup/index.hbs')
+    }),
+    new Favicon({
+      logo: path.join(ROOT, '/src/metadata/imported/favicon.png'),
+      prefix: development ? 'assets/' : '',
+      favicons: {
+        appName: data.title,
+        appShortName: pkg.name.scope,
+        appDescription: pkg.description,
+        developerName: pkg.author.name,
+        developerURL: pkg.author.url,
+        version: version,
+        start_url: '/',
+        display: 'browser',
+        background: '#ddd',
+        theme_color: '#333',
+        icons: {
+          android: true,
+          appleIcon: true,
+          coast: true,
+          favicons: true,
+          firefox: true,
+          windows: true,
+          yandex: true
+        }
+      }
     }),
     new Extract({
       filename: `${ASSETS}/styles.css`

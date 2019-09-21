@@ -2,7 +2,7 @@
 
 const pkg = require('../../package.json')
 
-const title = '@herokuro Website'
+const title = '@herokuro Homepage'
 const url = 'https://herokuro.github.io'
 
 module.exports = {
