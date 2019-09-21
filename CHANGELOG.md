@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/herokuro/website/compare/v1.1.0...v1.2.0) (2019-09-21)
+
+
+### Bug Fixes
+
+* **style:** add eslint rule exception to allow terser configs ([b420f2f](https://github.com/herokuro/website/commit/b420f2f))
+
+
+### Features
+
+* **metadata:** add favicon generation with data and versioning ([ff1f840](https://github.com/herokuro/website/commit/ff1f840))
+
 # [1.1.0](https://github.com/herokuro/website/compare/v1.0.2...v1.1.0) (2019-09-19)
 
 
