@@ -9,9 +9,16 @@ module.exports = {
   get development () { return !production },
   get production () { return production },
 
-  get inDevelopment () { return !production },
-  get inProduction () { return production },
+  inDevelopment: (...entries) =>
+    !production
+      ? entries.reduce((acc, obj) => ({ ...acc, ...obj }), {})
+      : {},
 
-  whenDevelopment: (...entries) => { return !production ? entries : [] },
-  whenProduction: (...entries) => { return production ? entries : [] }
+  inProduction: (...entries) =>
+    production
+      ? entries.reduce((acc, obj) => ({ ...acc, ...obj }), {})
+      : {},
+
+  whenDevelopment: (...entries) => !production ? entries : [],
+  whenProduction: (...entries) => production ? entries : []
 }

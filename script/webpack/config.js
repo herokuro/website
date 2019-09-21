@@ -3,6 +3,7 @@
 /* eslint-disable object-curly-newline */
 
 const path = require('path')
+const bytes = require('bytes')
 
 // const webpack = require('webpack')
 const Copy = require('copy-webpack-plugin')
@@ -18,7 +19,7 @@ const ASSETS = 'assets'
 const ROOT = path.join(__dirname, '../../')
 // const CSS_COMMON = path.join(ROOT, '/src/styles/common/index.sass')
 const { development } = require('./utils/mode')
-const { whenDevelopment } = require('./utils/mode')
+const { inDevelopment, whenDevelopment } = require('./utils/mode')
 
 const version = development ? pkg.version : getVersion()
 
@@ -34,7 +35,11 @@ module.exports = {
   devtool: development ? 'inline-source-map' : false,
 
   performance: {
-    hints: development ? 'warning' : 'error'
+    hints: development ? 'warning' : 'error',
+    ...inDevelopment({
+      maxAssetSize: bytes('2 MB'),
+      maxEntrypointSize: bytes('2 MB')
+    })
   },
 
   resolve: {
