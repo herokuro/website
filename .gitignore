@@ -94,6 +94,9 @@ typings/
 ._*
 .temp/
 
+# imported files & directories
+imported
+
 # development directory
 /dev
 

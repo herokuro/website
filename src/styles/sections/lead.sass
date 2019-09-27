@@ -1,29 +1,157 @@
-// left bg color: #9C6DCF
-// right bg color: #42AAC9
+@import '../common'
+
+$column-width-5: 150px
 
 .lead
-  height: 100vh
+  position: relative
 
-  .column-list
+  .wrapper
+    position: relative
+
+  .main-icon
+    position: absolute
+    z-index: 30
+
     display: flex
     align-items: center
     justify-content: center
 
-  .column-item
-    width: 150px
-    height: 100vh
+    width: $column-width-5
 
-    &:nth-of-type(1)
-      background: #8D77CE
+    .icon
+      width: 75%
+      height: auto
 
-    &:nth-of-type(2)
-      background: #7E81CD
+      color: white
 
-    &:nth-of-type(3)
-      background: #6F8BCC
+  .handle
+    position: absolute
+    z-index: 20
 
-    &:nth-of-type(4)
-      background: #6095CB
+    display: flex
+    justify-content: center
+    align-items: center
 
-    &:nth-of-type(5)
-      background: #519FCA
+    left: 0
+    width: 100%
+    height: 100%
+
+    color: white
+    font-size: 5em
+    font-weight: 300
+
+    pointer-events: none
+
+  .links
+    position: absolute
+    z-index: 20
+
+    right: 0
+    width: $column-width-5
+
+    li
+      padding: 20%
+
+    a
+
+    .icon
+      width: 100%
+      height: auto
+
+      color: white
+
+  .tools
+    display: flex
+    align-items: center
+    justify-content: center
+
+    // &:before,
+    // &:after
+    //   content: ''
+    //   position: absolute
+    //   z-index: 5
+    //   width: 50%
+    //   height: 100%
+
+    // &:before
+    //   background: #9C6DCF
+    //   left: 0
+
+    // &:after
+    //   background: #42AAC9
+    //   right: 0
+
+    li
+      position: relative
+      z-index: 10
+
+      display: flex
+      align-items: flex-end
+
+      width: $column-width-5
+      height: 100vh
+
+      +on-xs
+        // hide first 2 and last 2 columns
+        &:nth-of-type(1),
+        &:nth-of-type(2),
+        &:nth-of-type(6),
+        &:nth-of-type(7)
+          display: none
+
+      +on-sm
+        // hide first 2 and last 2 columns
+        &:nth-of-type(1),
+        &:nth-of-type(2),
+        &:nth-of-type(6),
+        &:nth-of-type(7)
+          display: none
+
+      +on-md
+        // hide first 2 and last 2 columns
+        &:nth-of-type(1),
+        &:nth-of-type(2),
+        &:nth-of-type(6),
+        &:nth-of-type(7)
+          display: none
+
+      +on-lg
+        // hide first and last columns
+        &:nth-of-type(1),
+        &:nth-of-type(7)
+          display: none
+
+      &:nth-of-type(1)
+        background: #8D77CE
+
+      &:nth-of-type(2)
+        background: #7E81CD
+
+      &:nth-of-type(3)
+        background: #6F8BCC
+
+      &:nth-of-type(4)
+        background: #6095CB
+
+      &:nth-of-type(5)
+        background: #519FCA
+
+      &:nth-of-type(6)
+        background: #519FCA
+
+      &:nth-of-type(7)
+        background: #519FCA
+
+    .column-icon
+      display: flex
+      justify-content: center
+
+      margin-bottom: 8em
+      width: 100%
+      height: auto
+
+      .icon
+        width: 50%
+        height: auto
+
+        color: white

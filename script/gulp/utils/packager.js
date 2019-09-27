@@ -6,6 +6,21 @@ const parseAuthor = require('parse-author')
 const rootDir = pkgDir.sync()
 const rawPkg = require(`${rootDir}/package.json`)
 
+class NameString extends String {
+  constructor (name) {
+    super(name)
+
+    const [, pkgScope, pkgBareName] = /^(?:(@[\w-_]+)\/)?([\w-_]+)$/.exec(name)
+
+    this.scope = pkgScope || null
+    this.name = pkgBareName
+  }
+
+  get hasScope () {
+    return !!this.scope
+  }
+}
+
 class AuthorString extends String {
   constructor (author) {
     super(author)
@@ -19,5 +34,8 @@ class AuthorString extends String {
 }
 
 module.exports = {
+  name: new NameString(rawPkg.name),
+  description: rawPkg.description,
+  version: rawPkg.version,
   author: new AuthorString(rawPkg.author)
 }

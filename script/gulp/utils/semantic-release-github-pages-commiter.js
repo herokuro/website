@@ -5,7 +5,7 @@ const ci = require('is-ci')
 const execa = require('execa')
 const check = require('./check-throw')
 const awhile = require('./awhile')
-const getVersion = require('./get-version-from-argv')
+const getVersion = require('./get-version-from-env')
 const isVersionValid = require('./is-version-valid')
 
 module.exports = {

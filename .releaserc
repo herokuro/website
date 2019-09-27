@@ -15,7 +15,7 @@
       ]
     }],
     ["@semantic-release/exec", {
-      "successCmd": "npm run deploy -- --${nextRelease.version}"
+      "successCmd": "export SEMANTIC_RELEASE_NEXT_RELEASE_VERSION=\"${nextRelease.version}\" && npm run build && npm run deploy"
     }]
   ]
 }

@@ -1,17 +1,27 @@
 'use strict'
 
+/* eslint-disable object-curly-newline */
+
 const path = require('path')
+const bytes = require('bytes')
 
 // const webpack = require('webpack')
 const Copy = require('copy-webpack-plugin')
 const HTML = require('html-webpack-plugin')
 const Extract = require('mini-css-extract-plugin')
 const SVG = require('svg-sprite-loader/plugin')
+const Favicon = require('favicons-webpack-plugin')
+
+const pkg = require('../gulp/utils/packager')
+const getVersion = require('../gulp/utils/get-version-from-env')
 
 const ASSETS = 'assets'
 const ROOT = path.join(__dirname, '../../')
 // const CSS_COMMON = path.join(ROOT, '/src/styles/common/index.sass')
-const development = !process.argv.includes('-p')
+const { development } = require('./utils/mode')
+const { inDevelopment, whenDevelopment } = require('./utils/mode')
+
+const version = development ? pkg.version : getVersion()
 
 module.exports = {
   entry: './src/app.js',
@@ -25,7 +35,11 @@ module.exports = {
   devtool: development ? 'inline-source-map' : false,
 
   performance: {
-    hints: development ? 'warning' : 'error'
+    hints: development ? 'warning' : 'error',
+    ...inDevelopment({
+      maxAssetSize: bytes('2 MB'),
+      maxEntrypointSize: bytes('2 MB')
+    })
   },
 
   resolve: {
@@ -37,8 +51,7 @@ module.exports = {
   module: {
     rules: [
       // Markup processing
-      {
-        test: /\.hbs$/,
+      { test: /\.hbs$/,
         loader: 'handlebars-loader',
         query: {
           helperDirs: [path.join(ROOT, '/src/markup/helpers')],
@@ -46,11 +59,9 @@ module.exports = {
         }
       },
       // SVG sprites processing
-      {
-        test: /icons\/.*\.svg$/,
+      { test: /icons\/.*\.svg$/,
         use: [
-          {
-            loader: 'svg-sprite-loader',
+          { loader: 'svg-sprite-loader',
             options: {
               extract: true,
               spriteFilename: `${ASSETS}/icons.svg`,
@@ -60,11 +71,9 @@ module.exports = {
         ]
       },
       // Font processing
-      {
-        test: /\.woff$/,
+      { test: /\.woff$/,
         use: [
-          {
-            loader: 'file-loader',
+          { loader: 'file-loader',
             options: {
               name: '[name].[ext]',
               outputPath: `${ASSETS}/fonts`
@@ -73,29 +82,23 @@ module.exports = {
         ]
       },
       // Style processing
-      {
-        test: /\.sass$/,
+      { test: /\.sass$/,
         use: [
-          {
-            loader: Extract.loader
-          },
-          {
-            loader: 'css-loader',
+          { loader: Extract.loader },
+          { loader: 'css-loader',
             options: {
               url: false,
               sourceMap: true
             }
           },
-          {
-            loader: 'postcss-loader',
+          { loader: 'postcss-loader',
             options: {
               sourceMap: true,
               ident: 'postcss',
               plugins: [require('autoprefixer')]
             }
           },
-          {
-            loader: 'sass-loader',
+          { loader: 'sass-loader',
             options: {
               sourceMap: true
               /*
@@ -110,8 +113,7 @@ module.exports = {
         ]
       },
       // JavaScript processing
-      {
-        test: /\.js$/,
+      { test: /\.js$/,
         exclude: /node_modules/,
         use: 'babel-loader'
       }
@@ -120,15 +122,54 @@ module.exports = {
 
   plugins: [
     new Copy([
-      // copy jquery
-      {
-        from: path.join(ROOT, '/node_modules/jquery/dist/jquery.min.js'),
-        to: path.join(ROOT, '/dev/vendors')
+      ...whenDevelopment(
+        // copy jquery
+        { from: path.join(ROOT, '/node_modules/jquery/dist/jquery.slim.js'),
+          to: path.join(ROOT, '/dev/vendors') }
+      ),
+      // copy thumbnail images
+      { from: path.join(ROOT, '/src/metadata/imported/thumbnail-*.jpg'),
+        to: path.join(ROOT, development ? '/dev' : '/build'),
+        flatten: true
+      },
+      // copy .txt files (humans.txt and robots.txt)
+      { from: path.join(ROOT, '/src/metadata/*.txt'),
+        to: path.join(ROOT, development ? '/dev' : '/build'),
+        flatten: true
       }
     ]),
     new HTML({
       filename: 'index.html',
-      template: path.join(ROOT, '/src/markup/index.hbs')
+      template: path.join(ROOT, '/src/markup/index.hbs'),
+      templateParameters: {
+        development,
+        production: !development
+      }
+    }),
+    new Favicon({
+      logo: path.join(ROOT, '/src/metadata/imported/favicon.png'),
+      prefix: development ? 'assets/' : '',
+      favicons: {
+        appName: '@herokuro Website',
+        appShortName: pkg.name.scope,
+        appDescription: pkg.description,
+        developerName: pkg.author.name,
+        developerURL: pkg.author.url,
+        version: version,
+        start_url: '/',
+        display: 'browser',
+        background: '#ddd',
+        theme_color: '#333',
+        icons: {
+          android: true,
+          appleIcon: true,
+          coast: true,
+          favicons: true,
+          firefox: true,
+          windows: true,
+          yandex: true
+        }
+      }
     }),
     new Extract({
       filename: `${ASSETS}/styles.css`

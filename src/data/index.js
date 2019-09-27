@@ -2,33 +2,42 @@
 
 const pkg = require('../../package.json')
 
-const title = '@herokuro Website'
+const title = '@herokuro - Node.js tools to manage your Heroku projects.'
 const url = 'https://herokuro.github.io'
 
 module.exports = {
   title: title,
   description: pkg.description,
   meta: {
-    general: [
+    og: [
       { property: 'title', content: title },
       { property: 'description', content: pkg.description },
-      { property: 'image', content: 'image link' },
-      { property: 'url', content: url },
-      { property: 'site_name', content: title }
+      { property: 'image', content: `${url}/thumbnail-facebook.jpg` },
+      { property: 'url', content: url }
     ],
     twitter: [
-      { name: 'card', content: 'card content' },
-      { name: 'image:alt', content: 'image alt content' },
-      { name: 'site', content: 'site content' }
+      { name: 'title', content: title },
+      { name: 'description', content: pkg.description },
+      { name: 'image', content: `${url}/thumbnail-twitter.jpg` },
+      { name: 'url', content: url },
+      { name: 'card', content: 'summary_large_image' }
     ]
   },
-  lead: [
-    { name: 'item-1' },
-    { name: 'item-2' },
-    { name: 'item-3' },
-    { name: 'item-4' },
-    { name: 'item-5' }
-  ],
+  lead: {
+    links: [
+      { href: '#', icon: 'github', name: 'GitHub' },
+      { href: '#', icon: 'twitter', name: 'Twitter' }
+    ],
+    icons: [
+      { name: 'item-1' },
+      { name: 'item-2' },
+      { name: 'item-3' },
+      { name: 'item-4' },
+      { name: 'item-5' },
+      { name: 'item-6' },
+      { name: 'item-7' }
+    ]
+  },
   footer: {
     main: [
       {
